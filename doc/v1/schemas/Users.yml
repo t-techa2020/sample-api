@@ -1,0 +1,47 @@
+type: object
+properties:
+  users:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: UserのID
+          type: string
+          example: "1"
+        name:
+          description: Userの名前
+          type: string
+          example: "山田 太郎"
+        user_name:
+          description: Userのユーザーネーム
+          type: string
+          example: "Taro"
+        email:
+          description: Userのemail
+          type: string
+          example: "taro@example.com"
+        phone:
+          description: Userの電話番号
+          type: string
+          example: "090-1234-5678"
+        website:
+          description: Userのウェブサイト
+          type: string
+          example: "https://taro-yamada.com"
+      required:
+        - id
+        - name
+        - user_name
+        - email
+        - phone
+        - website
+      additionalProperties: false
+  users_count:
+    description: Userの総数
+    type: integer
+    example: 3
+required:
+  - users
+  - users_count
+additional_properties: false

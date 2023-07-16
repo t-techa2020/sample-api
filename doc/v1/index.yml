@@ -1,0 +1,15 @@
+openapi: "3.0.0"
+info:
+  title: Sample API/V1
+  version: '1.0'
+  description: API/V1 for SampleApi
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  "/v1/todos":
+    $ref: "./paths/todos.yml"
+  "/v1/users":
+    $ref: "./paths/users.yml"
+components:
+  schemas:
+    $ref: "./schemas/index.yml"
