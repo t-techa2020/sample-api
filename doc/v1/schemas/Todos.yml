@@ -1,0 +1,37 @@
+type: object
+properties:
+  todos:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: TodoのID
+          type: string
+          example: "1"
+        title:
+          description: Todoのタイトル
+          type: string
+          example: "洗濯物を干す"
+        user_id:
+          description: Todoの担当者のID
+          type: string
+          example: "1"
+        completed:
+          description: Todoの完了状態
+          type: boolean
+          example: false
+      required:
+        - id
+        - title
+        - user_id
+        - completed
+      additionalProperties: false
+  todos_count:
+    description: Todoの総数
+    type: integer
+    example: 3
+required:
+  - todos
+  - todos_count
+additional_properties: false

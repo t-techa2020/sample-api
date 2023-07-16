@@ -1,0 +1,41 @@
+get:
+  summary: Todoの一覧を返すAPI
+  description: Todoの一覧を返すAPI
+  tags: ['v1/todos']
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Todos.yml'
+    '401':
+      description: |
+        - Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/UnauthorizedError.yml'
+    '403':
+      description: |
+        - InvalidIpAddressError
+        - InvalidPresignedUrlError
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Error.yml'
+    '404':
+      description: |
+        - ActiveRecord::RecordNotFound
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Error.yml'
+    '500':
+      description: |
+        - StandardError
+        - AccessNotAllowedError
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Error.yml'

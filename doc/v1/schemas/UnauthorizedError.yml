@@ -1,0 +1,13 @@
+type: object
+title: UnauthorizedError
+description: |
+  deviseから返却される認証エラー
+  このエラーのみ形式を揃えることができないため、共通エラーとは別途定義する
+properties:
+  error:
+    type: string
+    description: deviseから返却されるエラーメッセージ
+    example: ""
+required:
+  - error
+additionalProperties: false

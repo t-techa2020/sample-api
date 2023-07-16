@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "gen:openapi": "swagger-cli bundle -o ./doc/v1/openapi.yml -t yaml ./doc/v1/index.yml",
+    "lint:oas": "spectral lint doc/api/v2/openapi.yml",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "swagger-cli": "^4.0.4"
+  }
+}

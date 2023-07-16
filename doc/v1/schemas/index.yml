@@ -1,0 +1,8 @@
+Error:
+  $ref: "./Error.yml"
+Todos:
+  $ref: "./Todos.yml"
+UnauthorizedError:
+  $ref: "./UnauthorizedError.yml"
+Users:
+  $ref: "./Users.yml"

@@ -1,0 +1,24 @@
+type: object
+title: Error
+description: エラーオブジェクトの共通スキーマ
+properties:
+  class:
+    type: string
+    description: Railsから返却されるエラークラス名
+    enum:
+      - StandardError
+      - InvalidRequestError
+      - InvalidIpAddressError
+      - ActiveRecord::RecordNotFound
+      - AccessNotAllowedError
+      - InvalidPresignedUrlError
+      - SessionExpiredError
+    example: ActiveRecord::RecordNotFound
+  message:
+    type: string
+    description: エラーメッセージ
+    example: ActiveRecord::RecordNotFound
+required:
+  - class
+  - message
+additionalProperties: false

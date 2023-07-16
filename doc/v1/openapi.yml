@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  title: Sample API/V1
+  version: '1.0'
+  description: API/V1 for SampleApi
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /v1/todos:
+    get:
+      summary: Todoの一覧を返すAPI
+      description: Todoの一覧を返すAPI
+      tags:
+        - v1/todos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todos'
+        '401':
+          description: |
+            - Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        '403':
+          description: |
+            - InvalidIpAddressError
+            - InvalidPresignedUrlError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: |
+            - ActiveRecord::RecordNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            - StandardError
+            - AccessNotAllowedError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/users:
+    get:
+      summary: Userの一覧を返すAPI
+      description: Userの一覧を返すAPI
+      tags:
+        - v1/users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '401':
+          description: |
+            - Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+        '403':
+          description: |
+            - InvalidIpAddressError
+            - InvalidPresignedUrlError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: |
+            - ActiveRecord::RecordNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            - StandardError
+            - AccessNotAllowedError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      title: Error
+      description: エラーオブジェクトの共通スキーマ
+      properties:
+        class:
+          type: string
+          description: Railsから返却されるエラークラス名
+          enum:
+            - StandardError
+            - InvalidRequestError
+            - InvalidIpAddressError
+            - 'ActiveRecord::RecordNotFound'
+            - AccessNotAllowedError
+            - InvalidPresignedUrlError
+            - SessionExpiredError
+          example: 'ActiveRecord::RecordNotFound'
+        message:
+          type: string
+          description: エラーメッセージ
+          example: 'ActiveRecord::RecordNotFound'
+      required:
+        - class
+        - message
+      additionalProperties: false
+    Todos:
+      type: object
+      properties:
+        todos:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: TodoのID
+                type: string
+                example: '1'
+              title:
+                description: Todoのタイトル
+                type: string
+                example: 洗濯物を干す
+              user_id:
+                description: Todoの担当者のID
+                type: string
+                example: '1'
+              completed:
+                description: Todoの完了状態
+                type: boolean
+                example: false
+            required:
+              - id
+              - title
+              - user_id
+              - completed
+            additionalProperties: false
+        todos_count:
+          description: Todoの総数
+          type: integer
+          example: 3
+      required:
+        - todos
+        - todos_count
+      additional_properties: false
+    UnauthorizedError:
+      type: object
+      title: UnauthorizedError
+      description: |
+        deviseから返却される認証エラー
+        このエラーのみ形式を揃えることができないため、共通エラーとは別途定義する
+      properties:
+        error:
+          type: string
+          description: deviseから返却されるエラーメッセージ
+          example: ''
+      required:
+        - error
+      additionalProperties: false
+    Users:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: UserのID
+                type: string
+                example: '1'
+              name:
+                description: Userの名前
+                type: string
+                example: 山田 太郎
+              user_name:
+                description: Userのユーザーネーム
+                type: string
+                example: Taro
+              email:
+                description: Userのemail
+                type: string
+                example: taro@example.com
+              phone:
+                description: Userの電話番号
+                type: string
+                example: 090-1234-5678
+              website:
+                description: Userのウェブサイト
+                type: string
+                example: 'https://taro-yamada.com'
+            required:
+              - id
+              - name
+              - user_name
+              - email
+              - phone
+              - website
+            additionalProperties: false
+        users_count:
+          description: Userの総数
+          type: integer
+          example: 3
+      required:
+        - users
+        - users_count
+      additional_properties: false
