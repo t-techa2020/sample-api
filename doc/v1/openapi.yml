@@ -137,8 +137,8 @@ components:
                 example: 洗濯物を干す
               user_id:
                 description: Todoの担当者のID
-                type: string
-                example: '1'
+                type: number
+                example: 1
               completed:
                 description: Todoの完了状態
                 type: boolean
