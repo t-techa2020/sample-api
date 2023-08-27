@@ -135,7 +135,11 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.2-x86_64-darwin)
       racc (~> 1.4)
+    oj (3.16.0)
     openapi_parser (1.0.0)
+    panko_serializer (0.8.0)
+      activesupport
+      oj (> 3.11.0, < 4.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.7.0)
@@ -210,6 +214,7 @@ DEPENDENCIES
   factory_bot_rails
   jsonapi-serializer
   jsonapi.rb
+  panko_serializer
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   rspec-rails

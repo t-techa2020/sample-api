@@ -4,13 +4,11 @@ class V1::TodosController < ApplicationController
     todos_count = todos.size
 
     options = {
-      fields: { todo: %i(user_id title completed)},
+      only: { instance: %i(id user_id title completed)},
+      root_key: :todos,
+      meta: { todos_count: todos_count }
     }
 
-    todos = todos.map do |todo|
-      jsonapi_deserialize(TodoSerializer.new(todo, options).serializable_hash)
-    end
-
-    render json: {todos: todos, todos_count: todos_count}
+    render json: TodoSerializer.serialize(todos, options)
   end
 end
